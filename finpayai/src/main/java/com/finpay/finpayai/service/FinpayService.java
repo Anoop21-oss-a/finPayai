@@ -4,8 +4,11 @@ import org.springframework.stereotype.*;
 
 import com.finpay.finpayai.repo.UserRepo;
 import com.finpay.finpayai.repo.CreateCardRepo;
+import com.finpay.finpayai.repo.TransactionRepo;
 import com.finpay.finpayai.entity.CreateCardEntity;
+import com.finpay.finpayai.entity.transactionEntity;
 import com.finpay.finpayai.model.TransactionHistory;
+import org.modelmapper.ModelMapper;
 @Service
 public class FinpayService {
     @Autowired
@@ -31,8 +34,15 @@ public class FinpayService {
     public String userTransaction(){
         return "Success";
     
-        }
-    public TransactionHistory getUserTransactionHistory(){
-        TransactionHistory dataTOReturn=
+    };
+    @Autowired
+    private ModelMapper modelMapper;
+    
+    @Autowired
+    private TransactionRepo transactionRepo;
+    public TransactionHistory getUserTransactionHistory(Integer id){
+        transactionEntity transaction = this.transactionRepo.findById(id).get();
+        TransactionHistory res = this.modelMapper.map(transaction, TransactionHistory.class);
+        return res;
     }
 }

@@ -5,5 +5,5 @@ import org.springframework.stereotype.*;
 import com.finpay.finpayai.entity.*;
 
 @Repository
-public interface TransactionRepo extends JpaRepository<transactionEntity, Long> {
+public interface TransactionRepo extends JpaRepository<transactionEntity, Integer> {
 }

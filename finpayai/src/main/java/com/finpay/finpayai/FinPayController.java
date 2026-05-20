@@ -34,9 +34,10 @@ public class FinPayController {
     return ResponseEntity.ok(cardMessage);
   }
   
-  @GetMapping("/transaction-History")
-  public ResponseEntity<TransactionHistory>createCard(){
-    TransactionHistory response=finpayService.getUserTransactionHistory();
+  @GetMapping("/transaction-History/{id}")
+  public ResponseEntity<TransactionHistory>createCard(@PathVariable("id") Integer id){
+    TransactionHistory response=finpayService.getUserTransactionHistory(id);
+    System.out.println(response);
     return ResponseEntity.ok(response);
   }
 
